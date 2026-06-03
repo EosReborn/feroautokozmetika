@@ -24,6 +24,10 @@
   <meta property="og:url" content="https://feroautokozmetika.hu/"/>
   <meta property="og:site_name" content="FeRo Autókozmetika"/>
   <meta property="og:locale" content="hu_HU"/>
+  <meta property="og:image" content="https://feroautokozmetika.hu/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="FeRo Autókozmetika – Győrszentiván, Lőtér út 40."/>
   <meta property="business:contact_data:street_address" content="Lőtér út 40."/>
   <meta property="business:contact_data:locality" content="Győrszentiván"/>
   <meta property="business:contact_data:postal_code" content="9011"/>
@@ -35,6 +39,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="FeRo Autókozmetika – Győrszentiván"/>
   <meta name="twitter:description" content="Profi autókozmetika: belső-külső tisztítás, mélytisztítás, ózonos szagmentesítés, Bactakleen fertőtlenítés. Hívj most!"/>
+  <meta name="twitter:image" content="https://feroautokozmetika.hu/og-image.png"/>
 
   <!-- ═══ JSON-LD STRUCTURED DATA ═══ -->
   <script type="application/ld+json">
@@ -252,8 +257,8 @@
       transition: background .2s, transform .15s;
     }
     .nav-cta:hover { background: var(--red2); transform: scale(1.04); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); transition: .3s; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); transition: transform .3s ease, opacity .3s ease, background .2s; transform-origin: center; }
 
     /* HERO */
     #hero {
@@ -1116,7 +1121,34 @@
     lastScrollY = window.scrollY;
   });
 
-  function toggleNav() { navbar.classList.toggle('nav-open'); }
+  function toggleNav() {
+    const open = navbar.classList.toggle('nav-open');
+    // animált X ikon
+    const spans = document.querySelectorAll('.hamburger span');
+    if (open) {
+      spans[0].style.cssText = 'transform:translateY(7px) rotate(45deg)';
+      spans[1].style.cssText = 'opacity:0; transform:scaleX(0)';
+      spans[2].style.cssText = 'transform:translateY(-7px) rotate(-45deg)';
+    } else {
+      spans.forEach(s => s.style.cssText = '');
+    }
+  }
+
+  function closeNav() {
+    navbar.classList.remove('nav-open');
+    document.querySelectorAll('.hamburger span').forEach(s => s.style.cssText = '');
+  }
+
+  // Nav linkre kattintáskor záródjon be
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', closeNav));
+
+  // Menün kívülre kattintva záródjon be
+  document.addEventListener('click', (e) => {
+    if (navbar.classList.contains('nav-open') &&
+        !navbar.contains(e.target)) {
+      closeNav();
+    }
+  });
 
   /* SCROLL REVEAL */
   const observer = new IntersectionObserver((entries) => {
