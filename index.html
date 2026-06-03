@@ -491,6 +491,124 @@
     .modal-box h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: .08em; color: var(--white); margin: 22px 0 8px; }
     .modal-box a { color: var(--red); }
 
+    /* ─── STICKY TOP BAR ─── */
+    #top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: linear-gradient(90deg, #b01010 0%, #e01c1c 40%, #c01515 70%, #b01010 100%);
+      background-size: 200% 100%;
+      animation: barShimmer 4s ease-in-out infinite;
+      padding: 9px 5vw;
+      display: flex; align-items: center; justify-content: center; gap: 28px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 20px rgba(224,28,28,.5);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    #top-bar.hidden { transform: translateY(-100%); }
+    @keyframes barShimmer {
+      0%,100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+    .top-bar-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: #fff; white-space: nowrap;
+    }
+    .top-bar-sep { color: rgba(255,255,255,.35); font-size: 1.1rem; }
+    .top-bar-cta {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.18); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 5px 14px; border: 1px solid rgba(255,255,255,.3);
+      clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+      transition: background .2s;
+    }
+    .top-bar-cta:hover { background: rgba(255,255,255,.28); }
+    .top-bar-close {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: rgba(255,255,255,.6);
+      font-size: 1.1rem; cursor: pointer; line-height: 1; padding: 4px 8px;
+      transition: color .2s;
+    }
+    .top-bar-close:hover { color: #fff; }
+
+    /* ─── FLOATING BUTTONS ─── */
+    #float-btns {
+      position: fixed; bottom: 28px; right: 24px; z-index: 150;
+      display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+    }
+    .float-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none; color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45);
+      transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
+      clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+      animation: floatPop .6s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .float-btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 28px rgba(0,0,0,.55); }
+    .float-btn.call-btn { background: var(--red); animation-delay: .2s; }
+    .float-btn.fb-btn   { background: #1877f2; animation-delay: .4s; }
+    .float-btn.msg-btn  { background: linear-gradient(135deg,#0084ff,#0053c6); animation-delay: .6s; }
+    .float-icon { font-size: 1.25rem; line-height: 1; }
+    @keyframes floatPop {
+      from { opacity: 0; transform: translateX(50px) scale(.8); }
+      to   { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @media(max-width:400px){
+      .float-btn span:last-child { display: none; }
+      .float-btn { padding: 13px 15px; }
+    }
+
+    /* Facebook hero buttons */
+    .btn-facebook {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 32px; background: #1877f2; color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-facebook:hover { background: #1464d8; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(24,119,242,.4); }
+    .btn-messenger {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 32px;
+      background: linear-gradient(135deg, #0084ff, #0053c6);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      transition: filter .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-messenger:hover { filter: brightness(1.15); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,132,255,.35); }
+
+    /* ─── FOOTER SOCIAL ─── */
+    .footer-social { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .social-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .88rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none; color: #fff;
+      border-radius: 2px;
+      transition: transform .2s, filter .2s;
+      clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+    }
+    .social-pill:hover { transform: translateY(-2px); filter: brightness(1.15); }
+    .social-pill.fb  { background: #1877f2; }
+    .social-pill.msg { background: linear-gradient(135deg,#0084ff,#0053c6); }
+
+    /* ─── NAV adjustments for top-bar ─── */
+    nav { top: 38px; }
+    #top-bar.hidden ~ nav { top: 0; }
+
     /* FAQ */
     .faq-item { border-bottom: 1px solid rgba(255,255,255,.07); }
     .faq-q {
@@ -527,6 +645,16 @@
 </head>
 <body>
 
+<!-- STICKY TOP BAR -->
+<div id="top-bar">
+  <div class="top-bar-item">🚐 <span>Hozom-Viszem: <strong>díjmentes 10 km-en belül!</strong></span></div>
+  <span class="top-bar-sep">|</span>
+  <div class="top-bar-item">📞 <a href="tel:+36707731602" style="color:#fff;text-decoration:none">+36 70 773-1602</a></div>
+  <span class="top-bar-sep">|</span>
+  <a href="https://m.me/61573988103626" target="_blank" rel="noopener" class="top-bar-cta">💬 Írj nekünk!</a>
+  <button class="top-bar-close" onclick="closeTopBar()" aria-label="Bezár">✕</button>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo"><span>Fe</span>Ro <span style="font-size:1.1rem;color:var(--silver)">|</span> Autókozmetika</div>
@@ -557,6 +685,16 @@
   <div class="hero-btns">
     <a href="#pricing" class="btn-primary">Árlista megtekintése</a>
     <a href="#contact" class="btn-ghost">Kapcsolatfelvétel</a>
+  </div>
+  <div class="hero-btns" style="margin-top:14px;opacity:0;animation:fadeUp .8s 1.3s forwards">
+    <a href="https://www.facebook.com/profile.php?id=61573988103626" target="_blank" rel="noopener" class="btn-facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      Facebook oldal
+    </a>
+    <a href="https://m.me/61573988103626" target="_blank" rel="noopener" class="btn-messenger">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
+      Írj nekünk!
+    </a>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div></div>
 </section>
