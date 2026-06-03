@@ -450,13 +450,12 @@
     .map-btn { display: inline-block; margin-top: 40px; }
 
     /* FOOTER */
-    footer { background: #050505; border-top: 1px solid rgba(224,28,28,.15); padding: 32px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer { background: #050505; border-top: 1px solid rgba(224,28,28,.15); padding: 28px 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .12em; }
     .footer-logo span { color: var(--red); }
-    footer p { font-size: .88rem; color: rgba(200,200,200,.5); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a { font-size: .85rem; color: rgba(200,200,200,.5); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--red); }
+    footer p { font-size: .85rem; color: rgba(200,200,200,.4); }
+    .footer-cookie { font-size: .82rem; color: rgba(200,200,200,.35); text-decoration: none; transition: color .2s; }
+    .footer-cookie:hover { color: var(--red); }
 
     /* COOKIE BANNER */
     #cookie-banner {
@@ -580,7 +579,6 @@
     .float-btn.fb-btn   { background: #1877f2;     animation-delay: 1.7s; }
     .float-btn.msg-btn  { background: #0084ff;     animation-delay: 1.9s; }
     .float-icon { font-size: .95rem; line-height: 1; display: flex; align-items: center; }
-    .float-label { }
     @keyframes floatSlideIn {
       from { opacity: 0; transform: translateX(28px); }
       to   { opacity: 1; transform: translateX(0); }
@@ -615,26 +613,6 @@
     }
     .btn-messenger:hover { filter: brightness(1.15); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,132,255,.35); }
 
-    /* ─── FOOTER SOCIAL ─── */
-    .footer-social { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .social-pill {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 7px 16px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .88rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; text-decoration: none; color: #fff;
-      border-radius: 2px;
-      transition: transform .2s, filter .2s;
-      clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
-    }
-    .social-pill:hover { transform: translateY(-2px); filter: brightness(1.15); }
-    .social-pill.fb  { background: #1877f2; }
-    .social-pill.msg { background: linear-gradient(135deg,#0084ff,#0053c6); }
-
-    /* ─── NAV adjustments for top-bar ─── */
-    nav { top: 38px; }
-    #top-bar.hidden ~ nav { top: 0; }
-
     /* FAQ */
     .faq-item { border-bottom: 1px solid rgba(255,255,255,.07); }
     .faq-q {
@@ -650,10 +628,6 @@
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s; }
     .faq-a.open { max-height: 300px; padding-bottom: 20px; }
     .faq-a p { color: rgba(200,200,200,.8); font-size: 1rem; line-height: 1.75; }
-
-    /* SEMANTIC improvements */
-    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
-
 
     @media(max-width:900px){
       #about { grid-template-columns: 1fr; gap: 40px; padding: 60px 5vw; }
@@ -1027,17 +1001,7 @@
 <footer aria-label="Lábléc">
   <div class="footer-logo"><span>Fe</span>Ro Autókozmetika</div>
   <p>© 2025 FeRo Autókozmetika – Minden jog fenntartva</p>
-  <div class="footer-social">
-    <a href="https://www.facebook.com/profile.php?id=61573988103626" target="_blank" rel="noopener" class="social-pill fb">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-      Facebook
-    </a>
-    <a href="https://m.me/61573988103626" target="_blank" rel="noopener" class="social-pill msg">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.193 14.963l-3.056-3.259-5.963 3.259 6.559-6.963 3.13 3.259 5.889-3.259-6.559 6.963z"/></svg>
-      Messenger
-    </a>
-    <a href="#" onclick="openCookieModal();return false;" style="font-size:.82rem;color:rgba(200,200,200,.4);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='rgba(200,200,200,.4)'">Cookie tájékoztató</a>
-  </div>
+  <a href="#" onclick="openCookieModal();return false;" class="footer-cookie">Cookie tájékoztató</a>
 </footer>
 
 <!-- FLOATING BUTTONS -->
@@ -1108,37 +1072,47 @@
 
 <script>
   /* TOP BAR */
-  let topBarVisible = true;
+  let topBarVisible = !localStorage.getItem('feRoTopBarClosed');
   let lastScrollY = 0;
+
   function closeTopBar() {
     document.getElementById('top-bar').classList.add('hidden');
     topBarVisible = false;
-    document.getElementById('navbar').style.top = '0';
+    navbar.style.top = '0';
     localStorage.setItem('feRoTopBarClosed','1');
   }
-  window.addEventListener('scroll', () => {
-    if (!topBarVisible) return;
+
+  function getBarHeight() {
     const bar = document.getElementById('top-bar');
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > lastScrollY && window.scrollY > 80) {
-      bar.classList.add('hidden'); nav.style.top = '0';
-    } else {
-      bar.classList.remove('hidden'); nav.style.top = bar.offsetHeight + 'px';
-    }
-    lastScrollY = window.scrollY;
-  });
-  if (localStorage.getItem('feRoTopBarClosed')) {
+    return (topBarVisible && !bar.classList.contains('hidden')) ? bar.offsetHeight : 0;
+  }
+
+  if (!topBarVisible) {
     closeTopBar();
   } else {
     document.addEventListener('DOMContentLoaded', () => {
-      const bar = document.getElementById('top-bar');
-      document.getElementById('navbar').style.top = bar.offsetHeight + 'px';
+      navbar.style.top = getBarHeight() + 'px';
     });
   }
 
-  /* NAV scroll */
+  /* NAV + TOP BAR scroll (single listener) */
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+  window.addEventListener('scroll', () => {
+    // scrolled style
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    // top bar hide/show on scroll direction
+    if (!topBarVisible) return;
+    const bar = document.getElementById('top-bar');
+    if (window.scrollY > lastScrollY && window.scrollY > 80) {
+      bar.classList.add('hidden');
+      navbar.style.top = '0';
+    } else {
+      bar.classList.remove('hidden');
+      navbar.style.top = bar.offsetHeight + 'px';
+    }
+    lastScrollY = window.scrollY;
+  });
+
   function toggleNav() { navbar.classList.toggle('nav-open'); }
 
   /* SCROLL REVEAL */
