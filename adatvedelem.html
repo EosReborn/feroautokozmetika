@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adatvédelmi Tájékoztató – FeRo Autókozmetika</title>
+  <meta name="robots" content="noindex, follow"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:    #e01c1c;
+      --red2:   #ff3e3e;
+      --dark:   #0a0a0a;
+      --dark2:  #111111;
+      --dark3:  #1a1a1a;
+      --silver: #c8c8c8;
+      --white:  #f5f5f5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* noise */
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .35;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 5vw;
+      background: rgba(8,8,8,.97);
+      border-bottom: 1px solid rgba(224,28,28,.15);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem; letter-spacing: .12em; color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--silver);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--red); }
+
+    /* HERO STRIP */
+    .page-hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0303 50%, #0a0a0a 100%);
+      border-bottom: 1px solid rgba(224,28,28,.12);
+      padding: 64px 5vw 52px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,28,28,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-inner { max-width: 860px; position: relative; z-index: 1; }
+    .page-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem; font-weight: 700; letter-spacing: .35em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+    }
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      letter-spacing: .04em; line-height: .92;
+      color: var(--white);
+    }
+    .page-title span { color: var(--red); }
+    .page-meta {
+      margin-top: 18px;
+      font-size: .92rem; color: rgba(200,200,200,.55);
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .page-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: 64px 5vw 100px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,.06);
+      border-left: 3px solid var(--red);
+      padding: 28px 32px;
+      margin-bottom: 56px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp .7s .2s forwards;
+    }
+    .toc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: .1em;
+      color: var(--white); margin-bottom: 14px;
+    }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem; font-weight: 600; letter-spacing: .06em;
+      color: var(--silver); text-decoration: none; transition: color .2s;
+    }
+    .toc a:hover { color: var(--red); }
+
+    /* SECTIONS */
+    .doc-section {
+      margin-bottom: 52px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp .7s forwards;
+    }
+    .doc-section:nth-child(2)  { animation-delay: .15s; }
+    .doc-section:nth-child(3)  { animation-delay: .22s; }
+    .doc-section:nth-child(4)  { animation-delay: .29s; }
+    .doc-section:nth-child(5)  { animation-delay: .36s; }
+    .doc-section:nth-child(6)  { animation-delay: .43s; }
+    .doc-section:nth-child(7)  { animation-delay: .50s; }
+    .doc-section:nth-child(8)  { animation-delay: .57s; }
+    .doc-section:nth-child(9)  { animation-delay: .64s; }
+    .doc-section:nth-child(10) { animation-delay: .71s; }
+
+    .doc-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem; letter-spacing: .06em;
+      color: var(--white); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .doc-section h2 .sec-num {
+      font-size: 1rem; color: var(--red);
+      border: 1px solid rgba(224,28,28,.3);
+      padding: 2px 8px; letter-spacing: .08em;
+    }
+    .sec-divider {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      margin: 10px 0 18px;
+    }
+    .doc-section p {
+      font-size: 1rem; color: rgba(200,200,200,.82);
+      margin-bottom: 12px;
+    }
+    .doc-section p:last-child { margin-bottom: 0; }
+    .doc-section ul, .doc-section ol {
+      padding-left: 20px; margin-bottom: 14px;
+    }
+    .doc-section li {
+      font-size: 1rem; color: rgba(200,200,200,.82);
+      margin-bottom: 6px;
+    }
+    .doc-section strong { color: var(--white); }
+    .doc-section a { color: var(--red); text-decoration: none; }
+    .doc-section a:hover { text-decoration: underline; }
+
+    /* highlight box */
+    .highlight-box {
+      background: rgba(224,28,28,.06);
+      border: 1px solid rgba(224,28,28,.2);
+      border-left: 3px solid var(--red);
+      padding: 18px 22px; margin: 16px 0;
+      font-size: .97rem; color: rgba(200,200,200,.85);
+    }
+    .highlight-box strong { color: var(--white); }
+
+    /* info table */
+    .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .info-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--silver);
+      background: var(--dark3); padding: 12px 16px;
+      text-align: left; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .info-table td {
+      padding: 12px 16px; font-size: .97rem;
+      color: rgba(200,200,200,.8);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .info-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* rights grid */
+    .rights-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 14px; margin: 16px 0;
+    }
+    .right-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,.05);
+      border-top: 2px solid rgba(224,28,28,.4);
+      padding: 20px 18px;
+    }
+    .right-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem; letter-spacing: .08em;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .right-card p { font-size: .9rem; color: rgba(200,200,200,.7); margin: 0; }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      border-top: 1px solid rgba(224,28,28,.15);
+      padding: 28px 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .12em; }
+    .footer-logo span { color: var(--red); }
+    footer p { font-size: .85rem; color: rgba(200,200,200,.4); }
+    .footer-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(200,200,200,.4);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-back:hover { color: var(--red); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width:600px) {
+      .page-hero { padding: 44px 5vw 36px; }
+      .content-wrap { padding: 40px 5vw 80px; }
+      .toc { padding: 20px; }
+      .rights-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>Fe</span>Ro Autókozmetika</a>
+  <a href="index.html" class="nav-back">← Vissza a főoldalra</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-label">Jogi dokumentum</p>
+    <h1 class="page-title">Adatvédelmi<br><span>Tájékoztató</span></h1>
+    <div class="page-meta">
+      <span>📅 Hatályos: 2025. január 1.</span>
+      <span>🔄 Utolsó frissítés: 2025. június 1.</span>
+      <span>📋 GDPR kompatibilis</span>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Tartalom</div>
+    <ol>
+      <li><a href="#sec1">Az adatkezelő adatai</a></li>
+      <li><a href="#sec2">Kezelt személyes adatok köre</a></li>
+      <li><a href="#sec3">Az adatkezelés célja és jogalapja</a></li>
+      <li><a href="#sec4">Adatmegőrzési idő</a></li>
+      <li><a href="#sec5">Cookie-k (sütik) használata</a></li>
+      <li><a href="#sec6">Harmadik felek és adattovábbítás</a></li>
+      <li><a href="#sec7">Az érintett jogai</a></li>
+      <li><a href="#sec8">Adatbiztonság</a></li>
+      <li><a href="#sec9">Jogorvoslat</a></li>
+      <li><a href="#sec10">Tájékoztató módosítása</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="doc-section" id="sec1">
+    <h2><span class="sec-num">01</span> Az adatkezelő adatai</h2>
+    <div class="sec-divider"></div>
+    <table class="info-table">
+      <tr><th>Megnevezés</th><td><strong>FeRo Autókozmetika</strong></td></tr>
+      <tr><th>Telephely</th><td>9011 Győrszentiván, Lőtér út 40.</td></tr>
+      <tr><th>Telefon</th><td><a href="tel:+36707731602">+36 (70) 773-1602</a></td></tr>
+      <tr><th>E-mail</th><td><a href="mailto:feroautokozmetika@gmail.com">feroautokozmetika@gmail.com</a></td></tr>
+      <tr><th>Tevékenység</th><td>Autókozmetikai szolgáltatások</td></tr>
+    </table>
+    <p>A FeRo Autókozmetika (a továbbiakban: „Adatkezelő") az általa nyújtott szolgáltatások körében kezelt személyes adatokra vonatkozóan az alábbi tájékoztatást adja az Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR), valamint az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Info tv.) alapján.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="doc-section" id="sec2">
+    <h2><span class="sec-num">02</span> Kezelt személyes adatok köre</h2>
+    <div class="sec-divider"></div>
+    <p>Az Adatkezelő kizárólag az alábbi személyes adatokat kezeli, amelyeket az érintett önkéntesen bocsát rendelkezésre kapcsolatfelvétel, időpontfoglalás vagy szolgáltatás igénybevétele során:</p>
+    <ul>
+      <li><strong>Név</strong> – azonosításhoz, megszólításhoz</li>
+      <li><strong>Telefonszám</strong> – visszahíváshoz, időpont-egyeztetéshez</li>
+      <li><strong>E-mail cím</strong> – e-mailen történő kapcsolattartáshoz</li>
+      <li><strong>Jármű adatai</strong> (márka, típus, rendszám) – a szolgáltatás elvégzéséhez szükséges mértékig</li>
+      <li><strong>IP-cím és böngészési adatok</strong> – a weboldal cookie-jain keresztül, csak hozzájárulás esetén</li>
+    </ul>
+    <div class="highlight-box">
+      <strong>Fontos:</strong> Az Adatkezelő különleges adatot (egészségügyi, vallási, politikai stb.) nem kezel, és nem kér be.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="doc-section" id="sec3">
+    <h2><span class="sec-num">03</span> Az adatkezelés célja és jogalapja</h2>
+    <div class="sec-divider"></div>
+    <table class="info-table">
+      <thead>
+        <tr><th>Cél</th><th>Jogalap (GDPR)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kapcsolatfelvétel megválaszolása</td><td>Az érintett hozzájárulása – 6. cikk (1) a)</td></tr>
+        <tr><td>Időpont-egyeztetés, visszaigazolás</td><td>Szerződés teljesítése – 6. cikk (1) b)</td></tr>
+        <tr><td>Szolgáltatás elvégzése</td><td>Szerződés teljesítése – 6. cikk (1) b)</td></tr>
+        <tr><td>Számlázás, jogszabályi kötelezettség</td><td>Jogi kötelezettség – 6. cikk (1) c)</td></tr>
+        <tr><td>Weboldal működtetése (cookie)</td><td>Az érintett hozzájárulása – 6. cikk (1) a)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4 -->
+  <div class="doc-section" id="sec4">
+    <h2><span class="sec-num">04</span> Adatmegőrzési idő</h2>
+    <div class="sec-divider"></div>
+    <ul>
+      <li><strong>Kapcsolatfelvételi adatok:</strong> a kapcsolat lezárástól számított 1 évig, ezt követően törlésre kerülnek.</li>
+      <li><strong>Számlázási adatok:</strong> a számviteli törvény alapján 8 évig kötelezően megőrzendők.</li>
+      <li><strong>Cookie-k:</strong> a hozzájárulás visszavonásáig, de legfeljebb 2 évig (részletek az 5. pontban).</li>
+      <li><strong>Jármű adatai:</strong> a szolgáltatás elvégzéséig, illetve reklamáció esetén annak lezárásáig.</li>
+    </ul>
+    <p>Az adatokat az Adatkezelő haladéktalanul törli, ha az adatkezelés célja megszűnt, vagy az érintett kérésére – kivéve, ha törvényi kötelezettség az adatok további megőrzését írja elő.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="doc-section" id="sec5">
+    <h2><span class="sec-num">05</span> Cookie-k (sütik) használata</h2>
+    <div class="sec-divider"></div>
+    <p>A weboldal az alábbi sütiket alkalmazza:</p>
+    <table class="info-table">
+      <thead>
+        <tr><th>Süti neve</th><th>Típus</th><th>Cél</th><th>Lejárat</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>feRoCookieConsent</td>
+          <td>Szükséges</td>
+          <td>Cookie-hozzájárulás mentése</td>
+          <td>1 év</td>
+        </tr>
+        <tr>
+          <td>feRoTopBarClosed</td>
+          <td>Szükséges</td>
+          <td>Értesítő sáv bezárt állapotának mentése</td>
+          <td>Munkamenet</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <strong>Megjegyzés:</strong> A weboldal jelenleg kizárólag technikailag szükséges, saját sütiket használ. Harmadik féltől származó (pl. Google Analytics, hirdetési) sütiket nem alkalmaz, ezért ezek hozzájárulása nem szükséges. Ha ez a jövőben változna, a tájékoztató frissítésre kerül.
+    </div>
+    <p>A sütik a böngésző beállításaiban bármikor törölhetők. Erről bővebben: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a>, <a href="https://support.mozilla.org/hu/kb/sutik-informacio-amelyet-weboldalak-tarolnak-szami" target="_blank" rel="noopener">Mozilla Firefox</a>.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="doc-section" id="sec6">
+    <h2><span class="sec-num">06</span> Harmadik felek és adattovábbítás</h2>
+    <div class="sec-divider"></div>
+    <p>Az Adatkezelő személyes adatokat harmadik félnek – hatósági megkeresés kivételével – nem ad át és nem értékesít.</p>
+    <p>A weboldal az alábbi külső szolgáltatásokhoz kapcsolódik:</p>
+    <ul>
+      <li><strong>Google Fonts</strong> – betűtípusok betöltéséhez. A Google szerverei rögzíthetik a látogató IP-címét. Adatvédelmi irányelvük: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li><strong>Facebook / Meta Messenger</strong> – a weboldalon elhelyezett Messenger-linkre kattintva a Facebook adatkezelési szabályzata érvényes. Erről itt tájékozódhat: <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy/policy</a></li>
+    </ul>
+    <p>A fenti esetekben az adattovábbítás kizárólag akkor valósul meg, ha az érintett aktívan kattint a megfelelő linkre vagy funkciót igénybe veszi.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="doc-section" id="sec7">
+    <h2><span class="sec-num">07</span> Az érintett jogai</h2>
+    <div class="sec-divider"></div>
+    <p>A GDPR 15–22. cikkei alapján Önt az alábbi jogok illetik meg:</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <h4>🔍 Hozzáférés joga</h4>
+        <p>Tájékoztatást kérhet arról, hogy milyen adatait kezeljük.</p>
+      </div>
+      <div class="right-card">
+        <h4>✏️ Helyesbítés joga</h4>
+        <p>Kérheti pontatlan adatainak javítását vagy hiányos adatainak kiegészítését.</p>
+      </div>
+      <div class="right-card">
+        <h4>🗑️ Törlés joga</h4>
+        <p>Kérheti adatai törlését, ha az adatkezelés célja megszűnt vagy hozzájárulását visszavonta.</p>
+      </div>
+      <div class="right-card">
+        <h4>⏸️ Korlátozás joga</h4>
+        <p>Kérheti az adatkezelés korlátozását bizonyos esetekben.</p>
+      </div>
+      <div class="right-card">
+        <h4>📦 Adathordozhatóság</h4>
+        <p>Hozzájáruláson alapuló adatkezelés esetén kérheti adatait géppel olvasható formátumban.</p>
+      </div>
+      <div class="right-card">
+        <h4>🚫 Tiltakozás joga</h4>
+        <p>Jogos érdeken alapuló adatkezelés esetén tiltakozhat az adatkezelés ellen.</p>
+      </div>
+    </div>
+    <p>Jogai gyakorlásához kérjük, forduljon hozzánk az alábbi elérhetőségeken:</p>
+    <div class="highlight-box">
+      📧 <a href="mailto:feroautokozmetika@gmail.com">feroautokozmetika@gmail.com</a><br>
+      📞 <a href="tel:+36707731602">+36 (70) 773-1602</a><br>
+      📍 9011 Győrszentiván, Lőtér út 40.
+    </div>
+    <p>Kérelmére 30 napon belül válaszolunk. Indokolt esetben ez az időszak további 60 nappal meghosszabbítható, amelyről tájékoztatjuk Önt.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="doc-section" id="sec8">
+    <h2><span class="sec-num">08</span> Adatbiztonság</h2>
+    <div class="sec-divider"></div>
+    <p>Az Adatkezelő megfelelő technikai és szervezési intézkedéseket alkalmaz a személyes adatok védelme érdekében, különös tekintettel a jogosulatlan hozzáférés, megváltoztatás, nyilvánosságra hozatal, törlés vagy megsemmisítés ellen.</p>
+    <ul>
+      <li>A papír alapú dokumentumokat zárható helyen tárolja</li>
+      <li>Az elektronikus levelezés titkosított csatornán keresztül történik</li>
+      <li>A weboldal HTTPS protokollt alkalmaz (GitHub Pages SSL tanúsítvány)</li>
+      <li>Személyes adatok harmadik féllel nem kerülnek megosztásra</li>
+    </ul>
+    <p>Adatvédelmi incidens esetén az Adatkezelő a GDPR 33. cikke alapján 72 órán belül értesíti a felügyeleti hatóságot, amennyiben az incidens kockázatot jelent az érintett jogaira nézve.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="doc-section" id="sec9">
+    <h2><span class="sec-num">09</span> Jogorvoslat</h2>
+    <div class="sec-divider"></div>
+    <p>Ha úgy ítéli meg, hogy adatainak kezelése megsérti a GDPR rendelkezéseit, panaszt tehet a felügyeleti hatóságnál:</p>
+    <div class="highlight-box">
+      <strong>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</strong><br>
+      🌐 <a href="https://naih.hu" target="_blank" rel="noopener">naih.hu</a><br>
+      📧 <a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a><br>
+      📞 +36 (1) 391-1400<br>
+      📍 1055 Budapest, Falk Miksa utca 9-11.
+    </div>
+    <p>Az érintett jogosult bírósághoz is fordulni, amelynek illetékességét az érintett lakóhelye vagy tartózkodási helye alapján is meg lehet állapítani.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="doc-section" id="sec10">
+    <h2><span class="sec-num">10</span> Tájékoztató módosítása</h2>
+    <div class="sec-divider"></div>
+    <p>Az Adatkezelő fenntartja a jogot, hogy jelen Adatvédelmi Tájékoztatót egyoldalúan módosítsa. A módosítás hatályba lépéséről az érintetteket a weboldalon közzétett értesítéssel tájékoztatjuk.</p>
+    <p>A mindenkori hatályos tájékoztató a weboldalon folyamatosan elérhető. Javasoljuk, hogy rendszeresen tekintse meg az esetleges változások nyomon követése érdekében.</p>
+    <div class="highlight-box">
+      Jelen tájékoztató <strong>2025. január 1. napján</strong> lépett hatályba és visszavonásig, illetve módosításig érvényes.
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+
+<footer>
+  <div class="footer-logo"><span>Fe</span>Ro Autókozmetika</div>
+  <p>© 2025 FeRo Autókozmetika – Minden jog fenntartva</p>
+  <a href="index.html" class="footer-back">← Vissza a főoldalra</a>
+</footer>
+
+</body>
+</html>
